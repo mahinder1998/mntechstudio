@@ -589,56 +589,89 @@ get_header(); ?>
 
 
 <!-- ════════════════════════════════════════════════════════════
-     PRICING
+     HOW WE PRICE — No fixed rates, custom quote only
+     (Removed fixed INR pricing — works for IN + international)
 ═══════════════════════════════════════════════════════════════ -->
-<section id="pricing" style="background:#1A1A2E;padding:80px 0;">
-  <div class="pc-container">
+<section id="pricing" style="background:#1A1A2E;padding:80px 0;position:relative;overflow:hidden;">
+  <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:#FF6B6B;filter:blur(120px);opacity:0.05;bottom:-150px;left:-100px;pointer-events:none;"></div>
+  <div class="pc-container" style="position:relative;z-index:1;">
+
     <div class="reveal" style="text-align:center;margin-bottom:52px;">
-      <div class="section-label" style="display:inline-flex;margin-bottom:16px;">Transparent Pricing</div>
+      <div class="section-label" style="display:inline-flex;margin-bottom:16px;">Pricing</div>
       <h2 class="font-display" style="font-size:clamp(1.9rem,4vw,3rem);font-weight:800;margin-bottom:14px;">
-        Simple, <span class="grad-text">Honest Pricing</span>
+        Every Project Gets a <span class="grad-text">Custom Quote</span>
       </h2>
-      <p style="color:#B8B8D0;font-size:16px;max-width:480px;margin:0 auto;line-height:1.7;">No hidden fees. No scope creep. Pick your package or get a custom quote.</p>
+      <p style="color:#B8B8D0;font-size:16px;max-width:560px;margin:0 auto;line-height:1.75;">
+        We don't believe in one-size-fits-all pricing. Every business is different — so we scope each project individually and give you a transparent, fixed quote with no surprises.
+      </p>
     </div>
-    <div class="pc-slider" id="slider-pricing" data-slider>
-      <div class="pc-slider-track">
+
+    <!-- Why custom pricing -->
+    <div id="pricing-why-grid" class="reveal" style="display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:52px;">
       <?php
-      $plans=[
-        ['Starter','For small businesses & personal brands.','₹24,999',
-         ['5-page responsive website','WordPress CMS setup','Mobile-first design','Basic SEO setup','Contact form integration','SSL + security','30-day post-launch support'],false,'Get Started →'],
-        ['Growth','Our most popular — for growing businesses.','₹54,999',
-         ['Up to 15 pages','WordPress or Shopify','Custom UI/UX in Figma','Advanced SEO setup','Speed optimization','WhatsApp chat integration','Analytics & pixel setup','60-day support','Unlimited design revisions'],true,'Get Started — Most Popular →'],
-        ['Enterprise','Complex builds & custom digital products.','Custom',
-         ['React or custom stack','Full e-commerce + payments','Custom dashboard / portal','CRM & API integrations','Ongoing maintenance plan','Dedicated project manager','Priority 24hr support'],false,'Get a Custom Quote →'],
+      $pricing_reasons = [
+        ['🌍','Works for Every Market','We work with clients across India, UAE, UK, USA and Europe. Pricing is always in your preferred currency — INR, AED, USD, GBP or EUR.'],
+        ['📋','Scoped to Your Exact Needs','You only pay for what you actually need. No bloated packages, no paying for features you\'ll never use.'],
+        ['🔒','Fixed Price, No Surprises','Once we agree on a quote, the price is locked. No scope creep charges, no hidden fees — ever.'],
+        ['⚡','Quote Within 24 Hours','Share your requirements and we\'ll send a detailed, itemised proposal within 24 hours — free and with no obligation.'],
       ];
-      foreach($plans as $i=>$pl):?>
-      <div class="pc-slide">
-        <div class="pricing-card <?php echo $pl[4]?'featured':'';?>" style="position:relative;">
-          <?php if($pl[4]):?>
-          <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#6C63FF,#FF6B6B);color:#fff;font-size:11px;font-weight:800;padding:5px 18px;border-radius:100px;white-space:nowrap;font-family:'Space Grotesk',sans-serif;letter-spacing:0.05em;">★ MOST POPULAR</div>
-          <?php endif;?>
-          <p style="font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#6C63FF;margin-bottom:8px;"><?php echo $pl[0];?></p>
-          <p style="color:#B8B8D0;font-size:14px;margin-bottom:18px;"><?php echo $pl[1];?></p>
-          <div style="display:flex;align-items:baseline;gap:5px;margin-bottom:24px;">
-            <span style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:800;"><?php echo $pl[2];?></span>
-            <span style="color:#B8B8D0;font-size:14px;"><?php echo $pl[2]!='Custom'?'/ project':'quote';?></span>
-          </div>
-          <div style="margin-bottom:24px;">
-            <?php foreach($pl[3] as $feat):?>
-            <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(108,99,255,0.07);">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-              <span style="color:#B8B8D0;font-size:14px;"><?php echo $feat;?></span>
-            </div>
-            <?php endforeach;?>
-          </div>
-          <a href="#contact" class="<?php echo $pl[4]?'btn-coral':'btn-outline';?>" style="width:100%;justify-content:center;text-align:center;display:flex;font-size:14px;padding:14px;"><?php echo $pl[5];?></a>
+      foreach($pricing_reasons as $pr): ?>
+      <div style="background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.14);border-radius:16px;padding:24px 22px;display:flex;align-items:flex-start;gap:18px;">
+        <div style="font-size:32px;flex-shrink:0;"><?php echo $pr[0]; ?></div>
+        <div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:8px;"><?php echo $pr[1]; ?></h3>
+          <p style="color:#B8B8D0;font-size:14px;line-height:1.7;"><?php echo $pr[2]; ?></p>
         </div>
       </div>
-      <?php endforeach;?>
-      </div>
-      <div class="pc-slider-dots" id="dots-pricing"></div>
+      <?php endforeach; ?>
     </div>
-    <p style="text-align:center;margin-top:24px;font-size:13px;color:#B8B8D0;">All prices in INR. USD pricing available. <a href="#contact" style="color:#6C63FF;text-decoration:none;font-weight:600;">Custom quote within 24 hours →</a></p>
+    <style>@media(min-width:640px){#pricing-why-grid{grid-template-columns:repeat(2,1fr)!important;}}</style>
+
+    <!-- What affects the price -->
+    <div class="reveal" style="background:#0D0D1C;border:1px solid rgba(108,99,255,0.15);border-radius:20px;padding:36px 32px;margin-bottom:48px;">
+      <h3 style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:800;margin-bottom:24px;text-align:center;">
+        What Goes Into Your Quote?
+      </h3>
+      <div id="quote-factors" style="display:grid;grid-template-columns:1fr;gap:14px;">
+        <?php
+        $factors = [
+          ['Number of pages / screens', '#6C63FF'],
+          ['Design complexity & custom UI/UX', '#8B5CF6'],
+          ['Platform — Shopify, WordPress, React, custom', '#FF6B6B'],
+          ['Integrations — payments, CRM, APIs, etc.', '#38bdf8'],
+          ['Timeline & delivery urgency', '#34d399'],
+          ['Ongoing maintenance & support needs', '#FBBF24'],
+        ];
+        foreach($factors as $f): ?>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(108,99,255,0.04);border-radius:10px;border:1px solid rgba(108,99,255,0.08);">
+          <div style="width:8px;height:8px;border-radius:50%;background:<?php echo $f[1]; ?>;flex-shrink:0;"></div>
+          <span style="color:#B8B8D0;font-size:14px;"><?php echo $f[0]; ?></span>
+        </div>
+        <?php endforeach; ?>
+      </div>
+      <style>@media(min-width:640px){#quote-factors{grid-template-columns:repeat(2,1fr)!important;}}</style>
+    </div>
+
+    <!-- CTA -->
+    <div class="reveal" style="text-align:center;">
+      <p style="color:#9898B8;font-size:15px;margin-bottom:22px;">
+        Ready to find out what your project will cost?
+      </p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-bottom:20px;">
+        <a href="#contact" class="btn-coral" style="font-size:16px;padding:16px 36px;">
+          Get Your Free Quote →
+        </a>
+        <a href="https://wa.me/919876543210" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;padding:16px 26px;border-radius:8px;font-size:15px;font-weight:700;font-family:'Space Grotesk',sans-serif;text-decoration:none;transition:all 0.3s;"
+          onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 28px rgba(37,211,102,0.3)'"
+          onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp for Quick Quote
+        </a>
+      </div>
+      <p style="font-size:13px;color:#9898B8;">✓ Free & no obligation &nbsp;&nbsp; ✓ Quote in 24 hours &nbsp;&nbsp; ✓ INR / USD / AED / GBP accepted</p>
+    </div>
+
   </div>
 </section>
 
