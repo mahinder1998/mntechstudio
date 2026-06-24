@@ -1,8 +1,8 @@
 <!-- ════════════════════════════════════════════════════════════
      FOOTER
 ═══════════════════════════════════════════════════════════════ -->
-<footer style="background:#0A0A0F;border-top:1px solid rgba(108,99,255,0.12);padding:56px 0 32px;">
-  <div class="pc-container">
+<footer style="background:#0A0A0F;border-top:1px solid rgba(108,99,255,0.12);padding:56px 0 32px;"> 
+  <div class="pc-container  ">
 
     <div style="display:grid;grid-template-columns:1fr;gap:40px;margin-bottom:48px;" id="footer-inner">
       <!-- Brand col -->

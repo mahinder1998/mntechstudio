@@ -1,0 +1,46 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy using SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOSTINGER_HOST }}
+          username: ${{ secrets.HOSTINGER_USER }}
+          port: ${{ secrets.HOSTINGER_PORT }}
+          key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          script: |
+            cd ${{ secrets.HOSTINGER_PATH }}
+
+            echo "Current path:"
+            pwd
+
+            echo "Current branch:"
+            git branch
+
+            echo "Reset local changes"
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "Latest commit:"
+            git log -1 --oneline
+
+            echo "Install packages"
+            npm install
+
+            echo "Build Tailwind"
+            npm run build
+
+            echo "Clear WP cache"
+            if command -v wp >/dev/null 2>&1; then
+              wp cache flush --allow-root || true
+              wp litespeed-purge all --allow-root || true
+            fi

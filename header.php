@@ -74,8 +74,8 @@
   #ham-btn     { display: none !important; }
   #mobile-nav  { display: none !important; }
   #desktop-links { display: flex !important; }
-  #nav-cta       { display: inline-flex !important; }
-}
+  #nav-cta       { display: inline-flex !important; }  
+} 
 </style>
 
 <!-- ═══════════════════════════════════════════════════════════
