@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@source "../../*.php";
+@source "../../template-parts/**/*.php";
+@source "../../assets/js/**/*.js";
+
+@theme {
+    --font-body:    "Inter", sans-serif;
+    --font-display: "Space Grotesk", sans-serif;
+    --font-mono:    "JetBrains Mono", monospace;
+
+    --color-primary:   #6C63FF;
+    --color-secondary: #FF6B6B;
+    --color-dark:      #0A0A0F;
+    --color-card:      #12121C;
+    --color-ghost:     #F8F8FF;
+    --color-muted:     #B8B8D0;
+    --color-violet:    #8B5CF6;
+    --color-coral:     #FF6B6B;
+    --color-navy:      #1A1A2E;
+}
+
+/*
+  Safelist: force-generate responsive classes that Tailwind v4
+  may miss because they appear only in PHP string concatenations
+  or conditional expressions.
+*/
+@layer utilities {
+  .sm\:grid-cols-2  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:grid-cols-2  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md\:grid-cols-3  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:grid-cols-4  { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .lg\:grid-cols-2  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lg\:grid-cols-3  { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:col-span-2   { grid-column: span 2 / span 2; }
+  .md\:flex         { display: flex; }
+  .md\:inline-flex  { display: inline-flex; }
+  .md\:hidden       { display: none; }
+  .lg\:flex         { display: flex; }
+  .hidden           { display: none; }
+}

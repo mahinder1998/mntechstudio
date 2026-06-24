@@ -1,0 +1,15 @@
+node_modules/
+
+.DS_Store
+
+.env
+
+.vscode
+
+*.log
+
+npm-debug.log
+
+wp-content/uploads
+
+.idea
